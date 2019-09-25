@@ -16,5 +16,7 @@
     "url": "https://github.com/StaZarycki/Vivere/issues"
   },
   "homepage": "https://github.com/StaZarycki/Vivere#readme",
-  "dependencies": {}
+  "dependencies": {
+    "three": "^0.108.0"
+  }
 }

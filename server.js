@@ -6,12 +6,22 @@ const port = '3000';
 
 const server = http.createServer((req, res) => {
 	let contentType = 'text/html';
-	let fileName = '/index.html';
+	let fileName = '/client/index.html';
 
 	switch (req.url) {
 		case '/':
 			contentType = 'text/html';
-			fileName = '/index.html';
+			fileName = '/client/index.html';
+			break;
+
+		case '/three.js':
+			contentType = 'text/javascript';
+			fileName = '/three.js';
+			break;
+
+		case '/main.js':
+			contentType = 'text/javascript';
+			fileName = '/client/main.js';
 			break;
 
 		default:
@@ -19,12 +29,9 @@ const server = http.createServer((req, res) => {
 	}
 
 	fs.readFile(__dirname + fileName, 'binary', (err, file) => {
-		if (err)
-		{
+		if (err) {
 			console.log(err);
-		}
-		else
-		{
+		} else {
 			res.statusCode = 200;
 			res.setHeader('Content-type', contentType);
 			res.end(file);
