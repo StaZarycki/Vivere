@@ -3,36 +3,39 @@ function Block(type) {
 	const materials = [];
 
 	let objectName = "Not Defined";
+	let texturesPath = "/textures/block/";
 
+	// LOAD TEXTURES
+	const grassTopTexture = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(texturesPath + "grass_block_top.png") });
+	const grassSideTexture = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(texturesPath + "grass_block_side.png") });
+	const dirtTexture = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(texturesPath + "dirt.png") });
 
+	grassTopTexture.color.setHex(0xc9ff95);
 	// BLOCK TYPES
 
 	if (type == "grass") {
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/grass_block_side.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/grass_block_side.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/grass_block_top.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/grass_block_side.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/grass_block_side.png") }));
+		for (let i = 0; i < 6; i++) {
+			if (i == 2) {
+				materials.push(grassTopTexture);
+
+			} else if (i == 3) {
+				materials.push(dirtTexture);
+			} else {
+				materials.push(grassSideTexture);
+			}
+		}
 		objectName = "Grass Block";
-	} else if (type == "dirt") {
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
-		materials.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: new THREE.TextureLoader().load("/textures/block/dirt.png") }));
+	}
+	else if (type == "dirt") {
+		for (let i = 0; i < 6; i++) {
+			materials.push(dirtTexture);
+		}
 		objectName = "Dirt Block";
 	}
 
-	materials.forEach((material, index) => {
-		// Grass coloring
-		if (type == "grass" && index == 2) {
-			material.color.setHex(0xc9ff95);
-		}
-
+	materials.forEach((material) => {
 		material.map.magFilter = THREE.NearestFilter;
-		material.map.minFilter = THREE.NearestFilter;
+		material.map.minFilter = THREE.LinearFilter;
 	});
 
 	const mesh = new THREE.Mesh(geometry, materials);
