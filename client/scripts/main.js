@@ -1,8 +1,8 @@
-const scene = new THREE.Scene();
 const stats = new Stats();
 document.body.appendChild(stats.dom);
+const scene = new THREE.Scene();
 
-let renderDistance = 30;
+let renderDistance = 20;
 
 const camera = new THREE.PerspectiveCamera(
 	75,
@@ -11,7 +11,9 @@ const camera = new THREE.PerspectiveCamera(
 	renderDistance
 );
 const renderer = new THREE.WebGLRenderer();
-const worldManager = new WorldManager(scene);
+const textureLoader = new TextureLoader();
+const geometryLoader = new GeometryLoader();
+const worldManager = new WorldManager(scene, textureLoader, geometryLoader);
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement); // Orbit controls
 

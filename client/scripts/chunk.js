@@ -1,4 +1,4 @@
-function Chunk(x, z) {
+function Chunk(x, z, textureLoader, geometryLoader) {
 	const container = [];
 	const size = 10;
 	const perlinValue = 0.25;
@@ -8,8 +8,8 @@ function Chunk(x, z) {
 
 	noise.seed(Math.random());
 
-	let originalGrass = new Block("grass").getMesh();
-	let originalDirt = new Block("dirt").getMesh();
+	let originalGrass = new Block("grass", textureLoader, geometryLoader).getMesh();
+	let originalDirt = new Block("dirt", textureLoader, geometryLoader).getMesh();
 
 	for (let i = 0; i < size; i++) {
 		container.push([]);

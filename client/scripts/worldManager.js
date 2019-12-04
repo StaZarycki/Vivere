@@ -1,4 +1,4 @@
-function WorldManager(scene) {
+function WorldManager(scene, textureLoader, geometryLoader) {
 	const chunks = [];
 	let worldSize = 2;
 
@@ -9,7 +9,7 @@ function WorldManager(scene) {
 	this.generateChunks = function() {
 		for (let i = 0; i < worldSize; i++) {
 			for (let j = 0; j < worldSize; j++) {
-				let chunk = new Chunk(i, j).getChunk();
+				let chunk = new Chunk(i, j, textureLoader, geometryLoader).getChunk();
 				chunks.push(chunk);
 			}
 		}
