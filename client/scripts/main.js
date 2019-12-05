@@ -2,7 +2,7 @@ const stats = new Stats();
 document.body.appendChild(stats.dom);
 const scene = new THREE.Scene();
 
-let renderDistance = 20;
+let renderDistance = 30;
 
 const camera = new THREE.PerspectiveCamera(
 	75,
@@ -31,8 +31,7 @@ worldManager.setWorldSize(8);
 worldManager.generateChunks();
 worldManager.loadChunks();
 
-camera.position.z = 5;
-camera.position.y = 5;
+camera.position.y = 10;
 camera.lookAt(new THREE.Vector3(0, 0, 0))
 controls.update(); // Orbit controls
 

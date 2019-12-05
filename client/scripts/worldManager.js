@@ -16,18 +16,10 @@ function WorldManager(scene, textureLoader, geometryLoader) {
 	}
 
 	this.loadChunks = function() {
-
-		// Oh boy
 		chunks.forEach((chunk) => {
-			chunk.forEach((smallChunk) => {
-				smallChunk.forEach((smallerChunk) => {
-					smallerChunk.forEach((block) => {
-						block.position.x -= (worldSize * 10) / 2;
-						block.position.z -= (worldSize * 10) / 2;
-						scene.add(block);
-					});
-				});
-			});
+			chunk.position.x -= 10 * (worldSize - 1) / 2;
+			chunk.position.z -= 10 * (worldSize - 1) / 2;
+			scene.add(chunk);
 		});
 	}
 }
