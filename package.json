@@ -18,7 +18,7 @@
   "homepage": "https://github.com/StaZarycki/Vivere#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "three": "^0.108.0"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
